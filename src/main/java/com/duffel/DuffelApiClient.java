@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 public class DuffelApiClient {
 
-    private static final Logger LOG = LogManager.getLogger();
+    private static final Logger LOG = LogManager.getLogger(DuffelApiClient.class);
 
     public static final String DUFFEL_URL = "https://api.duffel.com";
     public static final String DUFFEL_TOKEN_URL = DUFFEL_URL + "/duffel/tokens";
