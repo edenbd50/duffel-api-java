@@ -27,7 +27,7 @@ In most cases, you'll want to add `Duffel SDK` to your project as a dependency b
 #### Gradle
 ```groovy
 dependencies {
-    implementation 'com.duffel:duffel-api:1.1.9'
+    implementation 'com.duffel:duffel-api:1.1.13'
 }
 ```
 
