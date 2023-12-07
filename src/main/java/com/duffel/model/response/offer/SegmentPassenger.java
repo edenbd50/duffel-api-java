@@ -1,5 +1,6 @@
 package com.duffel.model.response.offer;
 
+import com.duffel.model.Cabin;
 import com.duffel.model.CabinClass;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
@@ -45,6 +46,13 @@ public class SegmentPassenger {
      */
     @JsonProperty("cabin_class")
     private CabinClass cabinClass;
+
+    /**
+     * The cabin class that the passenger will travel in on this segment
+     * Possible values: "first", "business", "premium_economy", or "economy"
+     */
+    @JsonProperty("cabin")
+    private Cabin cabin;
 
     /**
      * The baggage allowances for the passenger on this segment included in the offer.
