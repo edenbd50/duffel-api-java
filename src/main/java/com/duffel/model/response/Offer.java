@@ -4,6 +4,7 @@ import com.duffel.model.Airline;
 import com.duffel.model.Conditions;
 import com.duffel.model.Data;
 import com.duffel.model.Passenger;
+import com.duffel.model.request.PrivateFare;
 import com.duffel.model.response.offer.OfferSlice;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
@@ -28,8 +29,19 @@ public class Offer extends Data<Offer> {
      * documents.
      * Example: ["passport"]
      */
+    @Deprecated
     @JsonProperty("allowed_passenger_identity_document_types")
     private List<String> allowedPassengerIdentityDocumentTypes;
+
+    /**
+     * The types of identity documents supported by the airline and may be
+     * provided for the passengers when creating an order based on this offer.
+     * Currently, possible types are passport, tax_id, known_traveler_number,
+     * and passenger_redress_number.
+     * Example: ["passport"]
+     */
+    @JsonProperty("supported_passenger_identity_document_types")
+    private List<IdentityDocumentType> supportedPassengerIdentityDocumentTypes;
 
     /**
      * The services that can be booked along with the offer but are not included by default, for example an additional
@@ -134,6 +146,12 @@ public class Offer extends Data<Offer> {
      */
     @JsonProperty("payment_requirements")
     private PaymentRequirements paymentRequirements;
+
+    /**
+     * The payment requirements for this offer
+     */
+    @JsonProperty("private_fares")
+    private List<PrivateFare> privateFares;
 
     /**
      * The slices that make up this offer. Each slice will include one or more segments, the specific flights that the

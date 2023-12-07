@@ -27,6 +27,12 @@ public class Segment {
     private List<SegmentPassenger> passengers;
 
     /**
+     * Additional segment-specific information about the passengers included in the offer (e.g. their baggage allowance and the cabin class they will be travelling in)
+     */
+    @JsonProperty("stops")
+    private List<Stop> stops;
+
+    /**
      * The terminal at the origin airport from which the segment is scheduled to depart
      * Nullable
      */

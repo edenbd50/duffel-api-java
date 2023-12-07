@@ -1,9 +1,6 @@
 package com.duffel.model.response;
 
-import com.duffel.model.response.order.metadata.BaggageMetadata;
-import com.duffel.model.response.order.metadata.CancelForAnyReasonMetadata;
-import com.duffel.model.response.order.metadata.Metadata;
-import com.duffel.model.response.order.metadata.SeatMetadata;
+import com.duffel.model.response.order.metadata.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -47,6 +44,7 @@ public class Service {
     @JsonSubTypes({
             @JsonSubTypes.Type(value = BaggageMetadata.class, name = ServiceType.BAGGAGE),
             @JsonSubTypes.Type(value = SeatMetadata.class, name = ServiceType.SEAT),
+            @JsonSubTypes.Type(value = MealMetadata.class, name = ServiceType.MEAL),
             @JsonSubTypes.Type(value = CancelForAnyReasonMetadata.class, name = ServiceType.CANCEL_FOR_ANY_REASON)
     })
     private Metadata metadata;

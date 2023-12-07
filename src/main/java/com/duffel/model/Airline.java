@@ -20,6 +20,12 @@ public class Airline extends Data<Airline> {
     private String iataCode;
 
     /**
+     * URL to the airline's conditions of carriage.
+     */
+    @JsonProperty("conditions_of_carriage_url")
+    private String conditionsOfCarriageUrl;
+
+    /**
      * Duffel's unique identifier for the airline
      */
     @JsonProperty("id")
