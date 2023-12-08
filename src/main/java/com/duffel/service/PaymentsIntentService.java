@@ -18,6 +18,7 @@ public class PaymentsIntentService {
 
     public PaymentsIntentService(ApiClient apiClient) {
         paymentsIntent = new PaymentsIntent(apiClient);
+        paymentsIntentConfirm = new PaymentsIntentConfirm(apiClient);
     }
 
     public PaymentIntentResponse create(PaymentRequest request) {
@@ -33,7 +34,7 @@ public class PaymentsIntentService {
 
 }
 
-public class PaymentsIntent extends PostResource<PaymentIntentResponse, PaymentIntentResponse> {
+class PaymentsIntent extends PostResource<PaymentIntentResponse, PaymentIntentResponse> {
     private static final String ENDPOINT = "/air/payments/payment_intents";
 
     public PaymentsIntent(ApiClient apiClient) {
@@ -49,7 +50,7 @@ public class PaymentsIntent extends PostResource<PaymentIntentResponse, PaymentI
     }
 }
 
-public class PaymentsIntentConfirm extends PostResource<PaymentIntentConfirmResponse, PaymentIntentConfirmResponse> {
+class PaymentsIntentConfirm extends PostResource<PaymentIntentConfirmResponse, PaymentIntentConfirmResponse> {
     private static final String ENDPOINT = "/air/payments/payment_intents";
 
     public PaymentsIntentConfirm(ApiClient apiClient) {

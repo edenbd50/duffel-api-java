@@ -36,6 +36,7 @@ public class DuffelApiClient {
     public final PaymentsService paymentsService;
     public final PaymentsRefundService paymentsRefundService;
     public final PaymentsIntentService paymentsIntentService;
+    public final StaysService staysService;
     public final PlacesService placesService;
     public final SeatMapsService seatMapsService;
     public final WebhookService webhookService;
@@ -72,6 +73,7 @@ public class DuffelApiClient {
         paymentsService = new PaymentsService(apiClient);
         paymentsRefundService = new PaymentsRefundService(apiClient);
         paymentsIntentService = new PaymentsIntentService(apiClient);
+        staysService = new StaysService(apiClient);
         placesService = new PlacesService(apiClient);
         seatMapsService = new SeatMapsService(apiClient);
         webhookService = new WebhookService(apiClient);
