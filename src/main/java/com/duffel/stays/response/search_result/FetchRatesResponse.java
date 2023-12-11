@@ -39,6 +39,19 @@ public class FetchRatesResponse extends Data<FetchRatesResponse> {
     private String checkInDate;
 
     /**
+     * The number of adult guests travelling
+     * Example: 2
+     */
+    @JsonProperty("adults")
+    private int adults;
+    /**
+     * The number of rooms required
+     * Example: 1
+     */
+    @JsonProperty("rooms")
+    private int rooms;
+
+    /**
      * The accommodation associated with the search result.
      */
     @JsonProperty("accommodation")

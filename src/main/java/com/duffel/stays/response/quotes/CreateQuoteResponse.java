@@ -35,6 +35,19 @@ public class CreateQuoteResponse extends Data<CreateQuoteResponse> {
     private String checkInDate;
 
     /**
+     * The number of adult guests travelling
+     * Example: 2
+     */
+    @JsonProperty("adults")
+    private int adults;
+    /**
+     * The number of rooms required
+     * Example: 1
+     */
+    @JsonProperty("rooms")
+    private int rooms;
+
+    /**
      * The currency of the total amount, as an ISO 4217 currency code.
      */
     @JsonProperty("total_currency")
