@@ -99,7 +99,7 @@ class BookingsOrder extends PostResource<BookHotelResponse, BookHotelResponse> {
     }
 
     public BookHotelResponse getBooking(String bookingId) {
-        return super.get(BookHotelResponse.class, bookingId).getData();
+        return super.get(BookHotelResponse.class, "/" + bookingId).getData();
     }
 }
 
