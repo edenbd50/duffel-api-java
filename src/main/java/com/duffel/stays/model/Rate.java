@@ -115,6 +115,13 @@ public class Rate extends Data<Rate> {
     private Integer quantityAvailable;
 
     /**
+     * The source provider of this rate
+     * Possible values: "bookingcom", "travelport", "priceline", or "duffel_hotel_group"
+     */
+    @JsonProperty("source")
+    private Source source;
+
+    /**
      * The loyalty programme that this rate supports.
      */
     @JsonProperty("supported_loyalty_programme")
