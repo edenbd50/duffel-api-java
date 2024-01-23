@@ -29,5 +29,7 @@ public class PostResource<T, U> extends Resource<T, U> {
     protected T update(Class<T> clazz, String id, PostData<?> request) {
         return apiClient.patch(endpoint + "/" + id, clazz, request);
     }
-
+    protected T serialize(Class<T> clazz, String body) {
+        return apiClient.serialize(clazz, body);
+    }
 }

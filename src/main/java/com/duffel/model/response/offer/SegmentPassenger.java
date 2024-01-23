@@ -3,6 +3,7 @@ package com.duffel.model.response.offer;
 import com.duffel.model.Cabin;
 import com.duffel.model.CabinClass;
 import com.duffel.model.response.order.metadata.SeatMetadata;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -31,6 +32,7 @@ public class SegmentPassenger {
      * generated its own random ID.
      */
     @JsonProperty("passenger_id")
+    @JsonAlias("air_order_passenger_id")
     private String passengerId;
 
     /**

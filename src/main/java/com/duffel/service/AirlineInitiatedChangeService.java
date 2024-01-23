@@ -26,4 +26,7 @@ public class AirlineInitiatedChangeService extends PostResource<AirlineInitiated
         return super.patch(AirlineInitiatedChange.class, aicId, new PostData<>(update)).getData();
     }
 
+    public AirlineInitiatedChange serializeAirlineInitiatedChange(String body) {
+       return super.serialize(AirlineInitiatedChange.class, body);
+    }
 }

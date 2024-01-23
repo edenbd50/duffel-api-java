@@ -3,6 +3,7 @@ package com.duffel.net;
 import com.duffel.DuffelApiClient;
 import com.duffel.exception.DuffelException;
 import com.duffel.exception.RateLimitException;
+import com.duffel.model.AirlineInitiatedChange;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -165,6 +166,14 @@ public class ApiClient {
             }
         } catch (JsonProcessingException e) {
             LOG.error("Failed to deserialize the response body", e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    public <T> T serialize(Class<T> clazz, String body) {
+        try {
+            return objectMapper.readValue(body, clazz);
+        } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
