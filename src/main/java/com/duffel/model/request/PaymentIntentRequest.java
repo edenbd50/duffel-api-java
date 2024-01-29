@@ -23,12 +23,12 @@ public class PaymentIntentRequest extends Data<PaymentIntentRequest> {
      */
     @JsonProperty("currency")
 
-    private String currency;
+    public String currency;
     /**
      * This amount that will be refunded to the customer's card.
      * Example: "30.20"
      */
     @JsonProperty("amount")
-    private String amount;
+    public String amount;
 
 }

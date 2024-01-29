@@ -15,4 +15,5 @@ import lombok.ToString;
 @Setter
 @ToString
 public class PaymentIntentConfirmRequest extends Data<PaymentIntentConfirmRequest> {
+
 }
