@@ -127,6 +127,14 @@ public class Accommodation extends Data<Accommodation> {
     private List<Rating> ratings;
 
     /**
+     * A "star rating" of this accommodation. If available, this is an integer from 1 to 5 "stars".
+     * This value is consolidated by Duffel based on data provided by our sources and accommodation providers. F
+     * or more detailed rating information, see ratings.
+     */
+    @JsonProperty("rating")
+    private int rating;
+
+    /**
      *  A review score of this accommodation, aggregated from guest reviews.
      *  If available, the value is a score from the 1.0-10.0 range. T
      *  his value is consolidated by Duffel based on user review data from multiple sources.
