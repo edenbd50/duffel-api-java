@@ -22,8 +22,10 @@ public class ChangeSlice {
 
     /**
      * Whether this slice can be changed. This can only be true for paid orders.
+     * This field is deprecated and has been replaced with the new available_actions field at the top-level order schema.
      */
     @JsonProperty("changeable")
+    @Deprecated
     private Boolean changeable;
 
     /**
