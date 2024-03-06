@@ -62,5 +62,14 @@ public class Conditions {
          */
         @JsonProperty("penalty_currency")
         private String penaltyCurrency;
+
+        /**
+         * The type of the condition.
+         * For now we only return conditions of type change_before_departure
+         * but we will return other types in the future.
+         * Possible values: "change_before_departure"
+         */
+        @JsonProperty("type")
+        private String type;
     }
 }

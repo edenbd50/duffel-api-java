@@ -40,6 +40,15 @@ public class Segment {
     private String originTerminal;
 
     /**
+     * The terminal at the origin airport from which the segment is scheduled to depart.
+     * You should use the origin_terminal attribute instead of this attribute, as this will be removed in the next API version.
+     * Nullable
+     */
+    @JsonProperty("departure_terminal")
+    @Deprecated
+    private String departureTerminal;
+
+    /**
      * The airport from which the flight is scheduled to depart
      */
     @JsonProperty("origin")
@@ -100,6 +109,16 @@ public class Segment {
     private String destinationTerminal;
 
     /**
+     * The terminal at the destination airport where the segment is scheduled to arrive.
+     * You should use the destination_terminal attribute instead of this attribute, as this will be removed in the next API version.
+     * Nullable
+     */
+    @JsonProperty("arrival_terminal")
+    @Deprecated
+    private String arrivalTerminal;
+
+
+    /**
      * The terminal at the Destination Airport where the segment is scheduled to
      */
     @JsonProperty("destination")
@@ -112,12 +131,30 @@ public class Segment {
     @JsonProperty("departing_at")
     private LocalDateTime departingAt;
 
+
+    /**
+     * The ISO 8601 datetime at which the segment is scheduled to depart.
+     * You should use the departing_at attribute instead of this attribute, as this will be removed in the next API version.
+     */
+    @JsonProperty("departure_datetime")
+    @Deprecated
+    private LocalDateTime departureDatetime;
+
     /**
      * The ISO 8601 datetime at which the segment is scheduled to arrive, in the destination airport timezone
      * (see destination.timezone)
      */
     @JsonProperty("arriving_at")
     private LocalDateTime arrivingAt;
+
+
+    /**
+     * The ISO 8601 datetime at which the segment is scheduled to arrive.
+     * You should use the arriving_at attribute instead of this attribute, as this will be removed in the next API version.
+     */
+    @JsonProperty("arrival_datetime")
+    @Deprecated
+    private LocalDateTime arrivalDatetime;
 
     /**
      * The aircraft that the operating carrier will use to operate this segment

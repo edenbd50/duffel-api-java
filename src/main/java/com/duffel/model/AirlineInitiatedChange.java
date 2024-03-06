@@ -80,7 +80,7 @@ public class AirlineInitiatedChange extends Data<AirlineInitiatedChange> {
      * Airline-Initiated changes that take some time to be processed.
      */
     @JsonProperty("travel_agent_ticket")
-    private String travel_agent_ticket;
+    private String travelAgentTicket;
 
     /**
      * The ISO 8601 datetime at which the airline-initiated change was last updated

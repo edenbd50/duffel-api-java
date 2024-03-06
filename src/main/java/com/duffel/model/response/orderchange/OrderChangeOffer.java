@@ -1,5 +1,6 @@
 package com.duffel.model.response.orderchange;
 
+import com.duffel.model.Conditions;
 import com.duffel.model.Data;
 import com.duffel.model.RefundDestination;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -73,6 +74,12 @@ public class OrderChangeOffer extends Data<OrderChangeOffer> {
     private String newTotalCurrency;
 
     /**
+     * Duffel's unique identifier for the order
+     */
+    @JsonProperty("order_id")
+    private String orderId;
+
+    /**
      * The ID for an order change if one has already been created from this order change offer
      * e.g. "oce_0000A4QasEUIjJ6jHKfhHU"
      */
@@ -114,4 +121,17 @@ public class OrderChangeOffer extends Data<OrderChangeOffer> {
      */
     @JsonProperty("slices")
     private OrderChangeSlices slices;
+
+    /**
+     * The conditions associated with this slice, describing the kinds of modifications you can make post-booking and
+     * any penalties that will apply to those modifications.
+     * This condition is applied only to this slice and to all the passengers associated with this offer.
+     * If a particular kind of modification is allowed, you may not always be able to take action through the Duffel
+     * API.
+     * In some cases, you may need to contact the Duffel support team or the airline directly.
+     */
+    @JsonProperty("conditions")
+    private Conditions conditions;
+
+
 }

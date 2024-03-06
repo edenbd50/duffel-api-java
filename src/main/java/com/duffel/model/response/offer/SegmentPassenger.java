@@ -2,6 +2,8 @@ package com.duffel.model.response.offer;
 
 import com.duffel.model.Cabin;
 import com.duffel.model.CabinClass;
+import com.duffel.model.response.order.metadata.SeatMetadata;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -17,12 +19,20 @@ import java.util.List;
 @ToString
 public class SegmentPassenger {
 
+
+    /**
+     * An object containing metadata about the service, like the designator of the seat.
+     */
+    @JsonProperty("seat")
+    private SeatMetadata seat;
+
     /**
      * The identifier for the passenger.
      * You may have specified this ID yourself when creating the offer request, or otherwise, Duffel will have
      * generated its own random ID.
      */
     @JsonProperty("passenger_id")
+    @JsonAlias("air_order_passenger_id")
     private String passengerId;
 
     /**

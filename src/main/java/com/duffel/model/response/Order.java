@@ -28,6 +28,18 @@ public class Order extends Data<Order> {
     @JsonProperty("airline_initiated_changes")
     private List<AirlineInitiatedChange> airlineInitiatedChanges;
 
+
+    /**
+     * The available actions you can take on this Airline-Initiated Change through our API.
+     * <p>
+     * "update" means that you can use the update endpoint for an Airline-Initiated Change.
+     * <p>
+     * Possible values in array: "accept", "cancel", "change", or "update"
+     * Example: ["accept","cancel","change"]
+     */
+    @JsonProperty("available_actions")
+    private List<AirlineInitiatedChange.AirlineInitiatedChangeActions> availableActions;
+
     /**
      * The base price of the order for all flights and services booked, excluding taxes
      * e.g. "30.20"
@@ -175,6 +187,12 @@ public class Order extends Data<Order> {
      */
     @JsonProperty("total_currency")
     private String totalCurrency;
+
+    /**
+     * The type of this order
+     */
+    @JsonProperty("type")
+    private OrderType type;
 
     @EqualsAndHashCode
     @Getter
