@@ -29,4 +29,11 @@ public class CheckInInformation extends Data<CheckInInformation> {
      */
     @JsonProperty("check_out_before_time")
     private String checkOutBeforeTime;
+
+    /**
+     * The key collection details for the accommodation.
+     * Example: "Please collect the keys from accommodation's reception."
+     */
+    @JsonProperty("key_collection")
+    private KeyCollection keyCollection;
 }

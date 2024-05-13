@@ -67,6 +67,15 @@ public class Accommodation extends Data<Accommodation> {
     private String phoneNumber;
 
     /**
+     * The key collection details for the accommodation. This field is deprecated and will be removed in a future version.
+     * Please use Accommodation.check_in_information.key_collection instead.
+     * Example: "Please collect the keys from accommodation's reception."
+     */
+    @JsonProperty("key_collection")
+    @Deprecated
+    private KeyCollection keyCollection;
+
+    /**
      * Information on the accommodation's location.
      */
     @JsonProperty("location")
