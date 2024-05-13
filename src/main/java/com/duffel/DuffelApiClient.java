@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 public class DuffelApiClient {
 
     private static final Logger LOG = LogManager.getLogger(DuffelApiClient.class);
-
     public static final String DUFFEL_URL = "https://api.duffel.com";
     public static final String DUFFEL_TOKEN_URL = DUFFEL_URL + "/duffel/tokens";
     public static final String API_VERSION = "v1";
@@ -50,9 +49,9 @@ public class DuffelApiClient {
             LOG.error(NO_API_KEY_MESSAGE);
             throw new SdkException(NO_API_KEY_MESSAGE);
         } else if (apiKey.startsWith("duffel_test_") || apiKey.startsWith("test_duffel_")) {
-            LOG.info("🚧 Using test API key");
+            LOG.info("Duffel SDK - 🚧 Using test API key");
         } else {
-            LOG.info("⚡️ Using live API key");
+            LOG.info("Duffel SDK - ⚡️ Using live API key");
         }
 
         ApiClient apiClient = new ApiClient(apiKey, endpoint);
@@ -78,5 +77,4 @@ public class DuffelApiClient {
         seatMapsService = new SeatMapsService(apiClient);
         webhookService = new WebhookService(apiClient);
     }
-
 }

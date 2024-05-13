@@ -3,13 +3,13 @@ package com.duffel.net;
 import com.duffel.DuffelApiClient;
 import com.duffel.exception.DuffelException;
 import com.duffel.exception.RateLimitException;
-import com.duffel.model.AirlineInitiatedChange;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -51,7 +51,6 @@ public class ApiClient {
 
     public ApiClient(String apiKey, String baseEndpoint) {
         HTTP_CLIENT = HttpClient.newBuilder().build();
-
         this.baseEndpoint = baseEndpoint;
         this.headers = new HashMap<>();
         addAuthorizationHeader(apiKey);
@@ -120,16 +119,16 @@ public class ApiClient {
         try {
             request = prepareRequest(endpoint, httpMethod, requestBody);
         } catch (IOException | URISyntaxException e) {
-            LOG.error("Failed to create API request", e);
+            LOG.error("Duffel SDK - Failed to create API request", e);
             throw new RuntimeException(e);
         }
 
         HttpResponse<byte[]> response;
         try {
+            LOG.debug("Duffel SDK - 📝 [Request] Call to {} with data {}", request.uri(), requestBody);
             response = HTTP_CLIENT.send(request, HttpResponse.BodyHandlers.ofByteArray());
-            LOG.debug("📝 Call to {} has trace ID {}", endpoint, response.headers().firstValue("x-request-id").orElse("❌ NOT FOUND"));
         } catch (IOException | InterruptedException e) {
-            LOG.error("Failed to send API request", e);
+            LOG.error("Duffel SDK - Failed to send API request", e);
             throw new RuntimeException(e);
         }
 
@@ -138,7 +137,7 @@ public class ApiClient {
             try (GZIPInputStream stream = new GZIPInputStream(new ByteArrayInputStream(response.body()))) {
                 body = new String(stream.readAllBytes(), StandardCharsets.UTF_8);
             } catch (IOException e) {
-                LOG.error("Failed to decompress response body", e);
+                LOG.error("Duffel SDK - Failed to decompress response body", e);
                 throw new RuntimeException(e);
             }
         } else {
@@ -146,9 +145,13 @@ public class ApiClient {
         }
 
         try {
+            String displayBody =  body.substring(0, Math.min(body.length(),2000)) + " ...";
+
+            LOG.info("Duffel SDK - 📝 [Response] Call to {} has trace ID {} status code [{}] \nbody {}", request.uri(), response.headers().firstValue("x-request-id").orElse("❌ NOT FOUND"), response.statusCode(), displayBody);
+
             if (response.statusCode() >= 200 && response.statusCode() < 300) {
                 if (body.isBlank() || "{}".equals(body)) {
-                    LOG.debug("Duffel returned an empty response body, returning null");
+                    LOG.debug("Duffel SDK - Duffel returned an empty response body, returning null");
                     return null;
                 } else {
                     return objectMapper.readValue(body, responseType);
@@ -157,16 +160,16 @@ public class ApiClient {
                 LocalDateTime rateLimitReset = (response.headers().firstValue(RATE_LIMIT_HEADER).isPresent()) ?
                         LocalDateTime.parse(response.headers().firstValue(RATE_LIMIT_HEADER).get(), DateTimeFormatter.RFC_1123_DATE_TIME)
                         : null;
-                LOG.debug("Duffel returned an rate limit response with a reset of {}", rateLimitReset);
+                LOG.debug("Duffel SDK - Duffel returned an rate limit response with a reset of {}", rateLimitReset);
                 RateLimitException exception = objectMapper.readValue(body, RateLimitException.class);
                 exception.setRateLimitReset(rateLimitReset);
                 throw exception;
             } else {
-                LOG.debug("Duffel returned an error with status code {}", response.statusCode());
+                LOG.debug("Duffel SDK - Duffel returned an error with status code {}", response.statusCode());
                 throw objectMapper.readValue(body, DuffelException.class);
             }
         } catch (JsonProcessingException e) {
-            LOG.error("Failed to deserialize the response body", e);
+            LOG.error("Duffel SDK - Failed to deserialize the response body", e);
             throw new RuntimeException(e);
         }
     }
