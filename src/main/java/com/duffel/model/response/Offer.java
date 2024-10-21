@@ -24,16 +24,6 @@ import java.util.List;
 public class Offer extends Data<Offer> {
 
     /**
-     * The types of identity documents that may be provided for the passengers when creating an order based on this
-     * offer. Currently, the only supported type is passport. If this is [], then you must not provide identity
-     * documents.
-     * Example: ["passport"]
-     */
-    @Deprecated
-    @JsonProperty("allowed_passenger_identity_document_types")
-    private List<String> allowedPassengerIdentityDocumentTypes;
-
-    /**
      * The types of identity documents supported by the airline and may be
      * provided for the passengers when creating an order based on this offer.
      * Currently, possible types are passport, tax_id, known_traveler_number,

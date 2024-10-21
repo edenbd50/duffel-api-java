@@ -7,6 +7,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.List;
+
 /**
  * Represents a hotel quote result.
  */
@@ -14,7 +17,7 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 @ToString
-public class CreateQuoteResponse extends Data<CreateQuoteResponse> {
+public class QuoteResponse extends Data<QuoteResponse> {
 
     /**
      * The ID for this hotel quote result.
@@ -34,12 +37,6 @@ public class CreateQuoteResponse extends Data<CreateQuoteResponse> {
     @JsonProperty("check_in_date")
     private String checkInDate;
 
-    /**
-     * The number of adult guests travelling
-     * Example: 2
-     */
-    @JsonProperty("adults")
-    private int adults;
     /**
      * The number of rooms required
      * Example: 1
@@ -118,4 +115,12 @@ public class CreateQuoteResponse extends Data<CreateQuoteResponse> {
      */
     @JsonProperty("accommodation")
     private Accommodation accommodation;
+
+    /**
+     * The list of guests travelling for this quote.
+     */
+    @JsonProperty("guests")
+    private List<GuestQuoteResponse> guests;
+
+
 }

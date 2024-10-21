@@ -16,5 +16,6 @@ public class Main {
         intentRequest.amount = "100.00";
         intentRequest.currency = "USD";
         PaymentIntentResponse response = apiClient.paymentsIntentService.create(intentRequest);
+        apiClient.staysService.getQuoteById("quote_123");
     }
 }

@@ -72,7 +72,6 @@ public class Accommodation extends Data<Accommodation> {
      * Example: "Please collect the keys from accommodation's reception."
      */
     @JsonProperty("key_collection")
-    @Deprecated
     private KeyCollection keyCollection;
 
     /**
@@ -100,22 +99,6 @@ public class Accommodation extends Data<Accommodation> {
      */
     @JsonProperty("chain")
     private Chain chain;
-
-    /**
-     * The currency for cheapest_rate_total_amount for this accommodation, as an ISO 4217 currency code.
-     * Example: "GBP"
-     */
-    @JsonProperty("cheapest_rate_currency")
-    private String cheapestRateCurrency;
-
-    /**
-     * The cheapest_rate_total_amount is for search result display purposes. It is equivalent to the cheapest rate total_amount for the cheapest room at this accommodation.
-     * The rate amount is a best effort computation during the time a search is made, and can change when fetching the rates.
-     * It is not guaranteed to be accurate. It will always show a value, even when rooms data is empty in the initial Search response.
-     * Example: "799.00"
-     */
-    @JsonProperty("cheapest_rate_total_amount")
-    private String cheapestRateTotalAmount;
 
     /**
      * Check in and check out related information.
@@ -152,8 +135,6 @@ public class Accommodation extends Data<Accommodation> {
      */
     @JsonProperty("review_score")
     private int reviewScore;
-
-
 
     /**
      * Bookable rooms for this accommodation. A room is a single accommodation unit. It might contain multiple beds.

@@ -21,21 +21,13 @@ import java.util.List;
 public class ChangeSlice {
 
     /**
-     * Whether this slice can be changed. This can only be true for paid orders.
-     * This field is deprecated and has been replaced with the new available_actions field at the top-level order schema.
-     */
-    @JsonProperty("changeable")
-    @Deprecated
-    private Boolean changeable;
-
-    /**
      * The conditions associated with this slice, describing the kinds of modifications you can make post-booking and any penalties that will apply to those modifications.
      * This condition is applied only to this slice and to all the passengers associated with this offer.
      * If a particular kind of modification is allowed, you may not always be able to take action through the Duffel API.
      * In some cases, you may need to contact the Duffel support team or the airline directly.
      */
     @JsonProperty("conditions")
-    private List<Conditions.Condition> conditions;
+    private Conditions.Condition conditions;
 
     /**
      * The City or Airport where this slice begins.

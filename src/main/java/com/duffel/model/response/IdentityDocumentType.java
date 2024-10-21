@@ -6,6 +6,7 @@ package com.duffel.model.response;
 public enum IdentityDocumentType {
 
     passport,
+    tax_id,
     known_traveler_number,
     passenger_redress_number,
 

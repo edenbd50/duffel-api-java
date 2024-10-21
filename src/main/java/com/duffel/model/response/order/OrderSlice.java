@@ -21,13 +21,6 @@ import java.util.List;
 public class OrderSlice extends com.duffel.model.response.Slice {
 
     /**
-     * Whether this slice can be changed. This can only be true for paid orders.
-     */
-    @Deprecated
-    @JsonProperty("changeable")
-    private Boolean changeable;
-
-    /**
      * The conditions associated with this slice, describing the kinds of modifications you can make post-booking and
      * any penalties that will apply to those modifications.
      * This condition is applied only to this slice and to all the passengers associated with this offer.

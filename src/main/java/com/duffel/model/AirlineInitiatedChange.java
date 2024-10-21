@@ -60,8 +60,8 @@ public class AirlineInitiatedChange extends Data<AirlineInitiatedChange> {
     /**
      * Duffel's unique identifier for the airline-initiated change
      */
-    @JsonProperty("id")
-    private String id;
+    @JsonProperty("aic_id")
+    private String aicId;
 
     /**
      * Duffel's unique identifier for the order

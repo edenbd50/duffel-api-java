@@ -1,5 +1,6 @@
 package com.duffel.model;
 
+import com.duffel.model.response.IdentityDocument;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,12 +17,6 @@ import java.util.List;
 @Setter
 @ToString
 public class OrderPassenger {
-
-    /**
-     * The type of the passenger, See: PassengerType
-     */
-    @JsonProperty("type")
-    private PassengerType passengerType;
 
     /**
      * The passenger's title
@@ -49,7 +44,7 @@ public class OrderPassenger {
      * passenger_identity_documents_required is set to true, then an identity document must be provided.
      */
     @JsonProperty("identity_documents")
-    private List<String> identityDocuments;
+    private List<IdentityDocument> identityDocuments;
 
     /**
      * The id of the passenger, returned when the OffersRequest was created

@@ -3,12 +3,11 @@ package com.duffel.service;
 import com.duffel.model.request.PostData;
 import com.duffel.net.ApiClient;
 import com.duffel.stays.request.book.BookHotelRequest;
-import com.duffel.stays.request.book.OrderCancellationRequest;
 import com.duffel.stays.request.quotes.CreateQuoteRequest;
 import com.duffel.stays.request.search.SearchAccommodationRequest;
 import com.duffel.stays.request.search_result.FetchRatesRequest;
 import com.duffel.stays.response.bookings.BookHotelResponse;
-import com.duffel.stays.response.quotes.CreateQuoteResponse;
+import com.duffel.stays.response.quotes.QuoteResponse;
 import com.duffel.stays.response.search.SearchAccommodationsResponse;
 import com.duffel.stays.response.search_result.FetchRatesResponse;
 
@@ -37,8 +36,11 @@ public class StaysService {
     public FetchRatesResponse searchRate(FetchRatesRequest request) {
         return rates.search(request);
     }
-    public CreateQuoteResponse createQuote(CreateQuoteRequest request) {
+    public QuoteResponse createQuote(CreateQuoteRequest request) {
         return quotes.createQuote(request);
+    }
+    public QuoteResponse getQuoteById(String quoteId) {
+        return quotes.getQuoteById(quoteId);
     }
     public BookHotelResponse createBooking(BookHotelRequest request) {
         return bookingsOrder.createBooking(request);
@@ -75,15 +77,19 @@ class FetchRates extends PostResource<FetchRatesResponse, FetchRatesRequest> {
     }
 }
 
-class Quotes extends PostResource<CreateQuoteResponse, CreateQuoteRequest> {
+class Quotes extends PostResource<QuoteResponse, QuoteResponse> {
     private static final String ENDPOINT = "/stays/quotes";
 
     public Quotes(ApiClient apiClient) {
         super(apiClient, ENDPOINT);
     }
 
-    public CreateQuoteResponse createQuote(CreateQuoteRequest request) {
-        return super.post(CreateQuoteResponse.class, new PostData<>(request)).getData();
+    public QuoteResponse createQuote(CreateQuoteRequest request) {
+        return super.post(QuoteResponse.class, new PostData<>(request)).getData();
+    }
+
+    public QuoteResponse getQuoteById(String quoteId) {
+        return super.get(QuoteResponse.class, "/" + quoteId).getData();
     }
 }
 

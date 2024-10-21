@@ -97,7 +97,7 @@ public class Rate extends Data<Rate> {
      */
     @Label("Experimental")
     @Description("Element is not to be shown to a user by default")
-    @JsonProperty("payment_method")
+    @JsonProperty("available_payment_methods")
     private String paymentMethod;
 
     /**
